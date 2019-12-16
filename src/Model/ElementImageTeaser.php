@@ -149,7 +149,7 @@ class ElementImageTeaser extends DataObject
             $styles = $this->config()->get('styles');
             if ($styles && count($styles) > 0) {
                 $styleDropdown = DropdownField::create('Style', _t(__CLASS__.'.STYLE', 'Style variation'), $styles);
-                $fields->insertAfter('Subtitle',$styleDropdown);
+                $fields->insertBefore('Content',$styleDropdown);
                 $styleDropdown->setEmptyString(_t(__CLASS__.'.CUSTOM_STYLES', 'Select a style..'));
             } else {
                 $fields->removeByName('Style');
@@ -159,9 +159,9 @@ class ElementImageTeaser extends DataObject
             // --------------------------------------------------------------------------------
             $Image = new UploadField('Image', 'Bild');
             $Image->setFolderName('element-teaser-image');
-            $Image->getValidator()->setAllowedExtensions(array('jpg', 'jpeg', 'png'));
+            $Image->getValidator()->setAllowedExtensions(array('jpg', 'jpeg', 'png', 'gif'));
             $Image->getValidator()->setAllowedMaxFileSize((2 * 1024 * 1024));  // 2MB
-            $Image->setDescription('Optional: Bild für Anzeige hinterlegen<br>Erlaubte Dateiformate: jpg, png<br>Erlaubte Dateigröße: max. 2MB<br>Bildgröße/Format: für das Vorschaubild wird automatisch ein Ausschnitt erstellt/errechnet (Format/seitenverhältnis durch Template festgelegt)<br>Bei Bedarf kann der Focus für das Vorschau-Bild gesetzt werden: Bild > Bearbeiten > Focus Point setzen > speichern<br>Achtung! Bild speichern und Datensatz speichern sind verschiedene Buttons/Funktionen');
+            $Image->setDescription('Optional: Bild für Anzeige hinterlegen<br>Erlaubte Dateiformate: jpg, png, gif<br>Erlaubte Dateigröße: max. 2MB<br>Bildgröße/Format: für das Vorschaubild wird automatisch ein Ausschnitt erstellt/errechnet (Format/seitenverhältnis durch Template festgelegt)<br>Bei Bedarf kann der Focus für das Vorschau-Bild gesetzt werden: Bild > Bearbeiten > Focus Point setzen > speichern<br>Achtung! Bild speichern und Datensatz speichern sind verschiedene Buttons/Funktionen');
             $fields->replaceField('Image', $Image);
 
 
